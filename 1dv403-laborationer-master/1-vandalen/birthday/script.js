@@ -4,14 +4,24 @@ window.onload = function(){
 
 	
 	var birthday = function(date){
-		
+		try{
+			var birthday = new Date(date);
+			var currentDate = new Date();
 
-
-			// Din kod här.
-
-
-
-
+			console.log(birthday);
+			console.log(currentDate);	
+				birthday.setFullYear(currentDate.getFullYear());
+				if (currentDate > birthday) {
+					console.log(birthday);
+		  			birthday.setFullYear(currentDate.getFullYear() + 1);
+				}
+				
+				console.log(Math.floor((birthday - currentDate) / 86400000));
+				return Math.round(((birthday - currentDate) / (1000*60*60*24)));
+			
+		} catch(error){
+			return error.message;
+		};
 	};
 	// ------------------------------------------------------------------------------
 

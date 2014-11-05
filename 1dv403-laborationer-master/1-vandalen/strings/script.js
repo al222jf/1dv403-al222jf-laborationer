@@ -10,13 +10,12 @@ window.onload = function(){
 		if (str.length > 0) {
 			var convChar = "";
 
-			for (var i = 0; i < str.length; i++) {
-				var character = str.charAt(i);
-				
+			for (var i = 0; i < str.length; i+= 1) {
+
 				if (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90 || str.charCodeAt(i) >= 196 && str.charCodeAt(i) <= 214) {
-					convChar = convChar + str.charAt(i).toLowerCase().replace(/a/g, "#");
+					convChar += str.charAt(i).toLowerCase().replace(/a/g, "#");
 				} else {
-					convChar = convChar + str.charAt(i).toUpperCase().replace(/A/g, "#");
+					convChar += str.charAt(i).toUpperCase().replace(/A/g, "#");
 				};
 			};
 			return convChar;
