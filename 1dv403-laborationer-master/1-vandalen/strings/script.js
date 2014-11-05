@@ -8,32 +8,23 @@ window.onload = function(){
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 		if (str.length > 0) {
-			var upper = str.toUpperCase().replace(/A/g, "#");
-			var lower = str.toLowerCase().replace(/a/g, "#");
-				/*var output = [];
-				for (var i = 0; i >= str.length; i++) {
-					var character = str.charAt(i);
-					
-					if (character == character.toUpperCase()) {
-						 character.toLowerCase(output[i]);
-					} else {
-						output[i] == character.toUpperCase();
-					}
+			var convChar = "";
+
+			for (var i = 0; i < str.length; i++) {
+				var character = str.charAt(i);
+				
+				if (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90 || str.charCodeAt(i) >= 196 && str.charCodeAt(i) <= 214) {
+					convChar = convChar + str.charAt(i).toLowerCase().replace(/a/g, "#");
+				} else {
+					convChar = convChar + str.charAt(i).toUpperCase().replace(/A/g, "#");
 				};
-				console.log(output[0]);
-				var string = output.toString();
-				console.log(string);*/
-			return upper, lower;
+			};
+			return convChar;
 		} else {
-			return "ett fel inträffade!";
+			return "Skriv något!";
 		};
-
-
-
-
-
-
 	};
+
 	// ------------------------------------------------------------------------------
 
 
