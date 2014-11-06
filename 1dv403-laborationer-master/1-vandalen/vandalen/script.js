@@ -7,10 +7,11 @@
 
 		//Plockar ut namnen, sorterar dom innan sätter ihop dom till.
 		var names = persArr.map(function (person){ return person.name;}).sort(function(a, b) { return a.localeCompare(b) }).join(", ");
-		console.log(names);
-
+		
 		//Plockar ut åldrarna
 		var ages = persArr.map(function (ages){ return ages.age;});
+		
+		//Kollar antalet åldrar
 		var numberOfAges = ages.length;
 
 		//Lägger ihop alla åldrar för att få fran medelåldern
@@ -30,7 +31,6 @@
 		result.names = names;
 		
 		return result; 
-
 	}; 
 	var data = [{name: "John Häggerud", age: 37}, {name: "Johan Leitet", age: 36}, {name: "Mats Loock", age: 46}];
 
