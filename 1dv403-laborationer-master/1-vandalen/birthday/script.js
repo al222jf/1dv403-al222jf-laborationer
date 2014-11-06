@@ -4,24 +4,25 @@ window.onload = function(){
 
 	
 	var birthday = function(date){
-		try{
-			var birthday = new Date(date);
-			var currentDate = new Date();
+		var birthday = new Date(date);
+		var currentDate = new Date();
 
-			console.log(birthday);
-			console.log(currentDate);	
-				birthday.setFullYear(currentDate.getFullYear());
-				if (currentDate > birthday) {
-					console.log(birthday);
-		  			birthday.setFullYear(currentDate.getFullYear() + 1);
-				}
+		
+
+			birthday.setFullYear(currentDate.getFullYear());
+			if (currentDate > birthday) {
 				
-				console.log(Math.floor((birthday - currentDate) / 86400000));
-				return Math.round(((birthday - currentDate) / (1000*60*60*24)));
+	  			birthday.setFullYear(currentDate.getFullYear() + 1);
+			}
 			
-		} catch(error){
-			return error.message;
-		};
+			var numberOfDays = Math.ceil((birthday - currentDate) / (1000*60*60*24));
+			
+			if (numberOfDays === 365) {
+				return 0;
+			};
+				
+			return numberOfDays;
+	
 	};
 	// ------------------------------------------------------------------------------
 
