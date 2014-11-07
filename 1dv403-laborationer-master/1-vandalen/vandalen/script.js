@@ -32,7 +32,7 @@ var makePerson = function(persArr){
 	return result;
 }; 
 
-var data = [{name: "John Häggerud", age: 37}, {name: "Johan Leitet", age: 36}, {name: "Mats Loock", age: 46}, {name: "Adam Lundberg", age: 23}];
+var data = [{name: "John Häggerud", age: 37}, {name: "Johan Leitet", age: 36}, {name: "Mats Loock", age: 46}];
 var names = data.map (function (person){ return person.name;});
 var ages = data.map(function (ages){ return ages.age;});
 
@@ -44,7 +44,6 @@ var isInteger;
 for (i = 0; i < names.length; i+=1) {
 		
 	if(typeof names[i] === "string"){
-
 		isString = true;
 	} else {
 		isString = false
