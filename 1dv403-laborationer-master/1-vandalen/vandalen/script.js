@@ -7,10 +7,10 @@ var makePerson = function(persArr){
 	var i;
 	
 	//Plockar ut namnen, sorterar dom innan sätter ihop dom till.
-	var names = persArr.map (function (person){ return person.name;}).sort(function(a, b) { return a.localeCompare(b) }).join(", ");
+	var names = persArr.map (function (name){ return name.name;}).sort(function(a, b) { return a.localeCompare(b) }).join(", ");
 
 	//Plockar ut åldrarna
-	var ages = persArr.map(function (ages){ return ages.age;});
+	var ages = persArr.map(function (age){ return age.age;});
 	
 	//Lägger ihop alla åldrar för att få fran medelåldern
 	var averageAge = ages.reduce(function(a,b){ return a+b;});
@@ -23,7 +23,7 @@ var makePerson = function(persArr){
 	var maxAge = Math.max.apply(Math, ages);
 	var minAge = Math.min.apply(Math, ages);
 
-	//Lägger in i objects
+	//Lägger in i objektet
 	result.minAge =  minAge;
 	result.maxAge = maxAge;
 	result.averageAge = averageAge
@@ -33,47 +33,36 @@ var makePerson = function(persArr){
 }; 
 
 var data = [{name: "John Häggerud", age: 37}, {name: "Johan Leitet", age: 36}, {name: "Mats Loock", age: 46}];
-var names = data.map (function (person){ return person.name;});
+var names = data.map (function (name){ return name.name;});
 var ages = data.map(function (ages){ return ages.age;});
 
-var i;
-var isString;
-var isInteger;
-
 //Kollar om det är strängar
-for (i = 0; i < names.length; i+=1) {
-		
-	if(typeof names[i] === "string"){
-		isString = true;
-	} else {
-		isString = false
-		console.log("Något är inte en string!");
-		break;
+names = names.every(function isString(value, index, array){ 
+	if (typeof value === "string") { 
+		return true;
+	} else { 
+		console.log("Något är inte en sträng!"); 
+		return false; 
 	};
-};
+});
 
 //kollar om det är typ number och heltal
-if (isString === true) {
-	for (i = 0; i < ages.length; i+=1) {
-		
-		if (typeof ages[i] === "number") {
-			
-			if(ages[i] % 1 === 0){
-				isInteger = true;
-			} else {
-				isInteger = false;
-				break;
-			};
+ages = ages.every(function isInteger(value, index, array){
+	if (typeof value === "number") {
+		if (value % 1 === 0) {
+			return true;
 		} else {
-			isInteger = false;
-			console.log("Något är inte heltal!");
-			break;
+			console.log("Något är inte ett heltal!");
+			return false;
 		};
+	} else {
+		console.log("Något är inte ett nummer!");
+		return false;
 	};
-};
+});
 
 //Om båda är sanna kör funktionen
-if (isString === true && isInteger === true) {
+if (names === true && ages === true) {
 	var result = makePerson(data);
 	console.log(result);
 };
