@@ -1,13 +1,11 @@
 "use strict";
 
-
 var makePerson = function(persArr){ 
 	var result = {};
 	var isString;
 	var isInteger;
 	var i;
 	
-
 	//Plockar ut namnen, sorterar dom innan sätter ihop dom till.
 	var names = persArr.map (function (person){ return person.name;}).sort(function(a, b) { return a.localeCompare(b) }).join(", ");
 
@@ -42,37 +40,40 @@ var i;
 var isString;
 var isInteger;
 
+//Kollar om det är strängar
 for (i = 0; i < names.length; i+=1) {
 		
-		if(typeof names[i] === "string"){
+	if(typeof names[i] === "string"){
 
-			isString = true;
+		isString = true;
+	} else {
+		isString = false
+		console.log("Något är inte en string!");
+		break;
+	};
+};
+
+//kollar om det är typ number och heltal
+if (isString === true) {
+	for (i = 0; i < ages.length; i+=1) {
+		
+		if (typeof ages[i] === "number") {
+			
+			if(ages[i] % 1 === 0){
+				isInteger = true;
+			} else {
+				isInteger = false;
+				break;
+			};
 		} else {
-			isString = false
-			console.log("Något är inte en string!");
+			isInteger = false;
+			console.log("Något är inte heltal!");
 			break;
 		};
 	};
+};
 
-	if (isString === true) {
-		for (i = 0; i < ages.length; i+=1) {
-			
-			if (typeof ages[i] === "number") {
-				
-				if(ages[i] % 1 === 0){
-					isInteger = true;
-				} else {
-					isInteger = false;
-					break;
-				};
-			} else {
-				isInteger = false;
-				console.log("Något är inte heltal!");
-				break;
-			};
-		};
-	};
-
+//Om båda är sanna kör funktionen
 if (isString === true && isInteger === true) {
 	var result = makePerson(data);
 	console.log(result);
