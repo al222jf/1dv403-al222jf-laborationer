@@ -2,9 +2,6 @@
 
 var makePerson = function(persArr){ 
 	var result = {};
-	var isString;
-	var isInteger;
-	var i;
 	
 	//Plockar ut namnen, sorterar dom innan sätter ihop dom till.
 	var names = persArr.map (function (name){ return name.name;}).sort(function(a, b) { return a.localeCompare(b) }).join(", ");
