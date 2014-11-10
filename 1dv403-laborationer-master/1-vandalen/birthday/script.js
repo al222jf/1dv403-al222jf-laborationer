@@ -6,7 +6,23 @@ window.onload = function(){
 	var birthday = function(date){
 		var birthday = new Date(date);
 		var currentDate = new Date();
+
+		/*
+		if(birthday.getMonth() == currentDate.getMonth() && birthday.getDate() == currentDate.getDate()){
+			return 0;
+		}
+
+		if(birthday.getMonth() == currentDate.getMonth() && birthday.getDate() == (currentDate.getDate() - 1) ){
+			return 1;
+		}
+		if(birthday.getMonth() <= currentDate.getMonth() || ( birthday.getMonth() == currentDate.getMonth() && birthday.getDate() < currentDate.getDate() ) ){
+			birthday.setFullYear(currentDate.getFullYear() + 1);
+		}
+		var numberOfDays = Math.ceil((birthday.getTime() - currentDate.getTime()) / (1000*60*60*24));
+		*/
 		if (currentDate > birthday) {
+
+
 			birthday.setFullYear(currentDate.getFullYear());
 			if (currentDate > birthday) {
 				
