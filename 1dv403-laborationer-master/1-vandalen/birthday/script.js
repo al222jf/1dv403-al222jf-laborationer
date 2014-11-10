@@ -6,7 +6,7 @@ window.onload = function(){
 	var birthday = function(date){
 		var birthday = new Date(date);
 		var currentDate = new Date();
-
+		if (currentDate > birthday) {
 			birthday.setFullYear(currentDate.getFullYear());
 			if (currentDate > birthday) {
 				
@@ -20,7 +20,11 @@ window.onload = function(){
 			};
 				
 			return numberOfDays;
+		} else {
+			console.log("Något fel!");
+		}
 	};
+
 	// ------------------------------------------------------------------------------
 
 
