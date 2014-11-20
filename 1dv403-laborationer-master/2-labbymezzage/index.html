@@ -2,9 +2,24 @@
 <html lang="sv">
 <head>
 	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="css/style.css"/>
 	<script src="js/message.js"></script>
 	<script src="js/messageEngine.js"></script>
 </head>
     <body>
+    <div id="logo">
+    	<img src="pics/logo.png" alt="picture of text Labby Mezzage">
+    </div>
+    <div id="window">
+    	<div id="message">
+    	</div> 
+    	<div id="bottom">
+    		<form>
+	    		<p id="numberOfMess">Antal Medelanden: 0</p>
+	    		<textarea id="textarea" rows="5" cols="50" placeholder="Skriv ditt meddelande här..."></textarea>
+	    		<input id="button" type="submit" value="Skicka!" />
+    		</form>
+    	</div>
+    </div>
     </body>
 </html>

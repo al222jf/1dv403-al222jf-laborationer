@@ -23,9 +23,9 @@ Message.prototype.toString = function(){
 	return this.getText()+" ("+this.getDate()+")";
 }
 
-Message.prototype.getHTMLText = function(){
-
+Message.prototype.getHTMLText = function() {
 }
+
 
 Message.prototype.getDateText = function(){
 

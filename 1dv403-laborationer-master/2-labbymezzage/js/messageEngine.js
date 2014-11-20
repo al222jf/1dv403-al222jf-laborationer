@@ -1,17 +1,30 @@
-"use strict";
+"use strict"
 
-var myApp = {
+var MessageBoard  = {
 
 	messages: [],
-	console.log(messages);
-	init:function(e){
-		var mess = new Message("Testmeddelande", new Date());
 
-		alert(mess);
-		mess.setText("En annan text");
-		alert(mess);
-		messages.push(mess);
+	init:function(e){
+		//alert(mess);
+		//mess.setText("En annan text");
+		//alert(mess);
+		//messages.push(mess);
+		MessageBoard.messages.push("meddelande");
+
+		var submit = document.getElementById("button");
+		submit.onclick = function(){
+			var text = document.querySelector("textarea").value;
+			//alert(text);
+			MessageBoard.messages.push(text);
+			console.log(MessageBoard.messages);
+			
+			renderMessages();
+		}
+			alert(MessageBoard.messages);
 	}
 }
 
-window.onload = myApp.init;
+
+
+window.onload = MessageBoard.init;
+
