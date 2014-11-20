@@ -11,6 +11,7 @@ var MessageBoard  = {
 	},
 
 	getMessages: function(){
+		
 		var text = document.getElementById("textarea");
 
 		MessageBoard.messages.push( new Message(text.value, new Date()));
@@ -20,6 +21,7 @@ var MessageBoard  = {
 	},
 	
 	renderMessage: function(messageID){
+
 		var div = document.getElementById("messageArea");
 		var text2 = document.createElement("p");
 		text2.innerHTML = MessageBoard.messages[messageID].getHTMLText();
