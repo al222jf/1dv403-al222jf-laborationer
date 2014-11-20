@@ -4,23 +4,27 @@ var MessageBoard  = {
 
 	messages: [],
 
-	init:function(e){
-		//alert(mess);
-		//mess.setText("En annan text");
-		//alert(mess);
-		//messages.push(mess);
-		MessageBoard.messages.push("meddelande");
+	init:function(){
 
 		var submit = document.getElementById("button");
-		submit.onclick = function(){
-			var text = document.querySelector("textarea").value;
-			//alert(text);
-			MessageBoard.messages.push(text);
-			console.log(MessageBoard.messages);
-			
-			renderMessages();
-		}
-			alert(MessageBoard.messages);
+		submit.onclick = MessageBoard.getMessages;
+	},
+
+	getMessages: function(){
+		var text = document.getElementById("textarea");
+
+		MessageBoard.messages.push( new Message(text.value, new Date()));
+		console.log(MessageBoard.messages);
+		var currentPost = MessageBoard.messages.length - 1;
+		MessageBoard.renderMessage(currentPost);
+	},
+	
+	renderMessage: function(messageID){
+		var div = document.getElementById("messageArea");
+		var text2 = document.createElement("p");
+		text2.innerHTML = MessageBoard.messages[messageID].getHTMLText();
+		div.appendChild(text2);
+		alert(text2.innerHTML);
 	}
 }
 
