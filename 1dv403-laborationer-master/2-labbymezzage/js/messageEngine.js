@@ -16,8 +16,8 @@ var MessageBoard  = {
 
 		MessageBoard.messages.push( new Message(text.value, new Date()));
 		console.log(MessageBoard.messages);
-		var currentPost = MessageBoard.messages.length - 1;
-		MessageBoard.renderMessage(currentPost);
+		var lastPost = MessageBoard.messages.length - 1;
+		MessageBoard.renderMessage(lastPost);
 	},
 	
 	renderMessage: function(messageID){
@@ -26,7 +26,6 @@ var MessageBoard  = {
 		var text2 = document.createElement("p");
 		text2.innerHTML = MessageBoard.messages[messageID].getHTMLText();
 		div.appendChild(text2);
-		alert(text2.innerHTML);
 	}
 }
 
