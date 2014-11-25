@@ -32,7 +32,6 @@ body {
 .post {
 	width: 100%;
 	overflow: auto;
-	background: green;
 }
 
 .theTime {

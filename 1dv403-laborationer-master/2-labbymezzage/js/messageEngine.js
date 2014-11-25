@@ -42,6 +42,7 @@ var MessageBoard  = {
 
 		imgClose.onclick = function(){
 			MessageBoard.removeMessage(messageID);
+			alert("tabort");
 		}
 		
 		var text2 = document.createElement("p");
@@ -64,6 +65,7 @@ var MessageBoard  = {
 
 	removeMessage: function(messageID){
 		MessageBoard.messages.splice(messageID, 1);
+
 	},
 
 	updateScroll: function(){
