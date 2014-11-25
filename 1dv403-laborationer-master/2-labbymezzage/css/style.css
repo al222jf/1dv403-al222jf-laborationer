@@ -18,6 +18,30 @@ body {
 
 }
 
+#messageWrapper {
+	
+
+}
+
+#messageArea {
+	height: 300px;
+	width: 458px;
+	overflow: auto;
+}
+
+.post {
+	width: 100%;
+	overflow: auto;
+	background: green;
+}
+
+.theTime {
+	float: right;
+}
+
+.theTime p {
+	margin: 0;}
+
 #bottom {
 	overflow: auto;
 }

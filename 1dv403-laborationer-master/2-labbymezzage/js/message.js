@@ -30,5 +30,11 @@ Message.prototype.getHTMLText = function() {
 
 
 Message.prototype.getDateText = function(){
+ 	var currentDate = new Date();
 
+ 	var hours = currentDate.getHours();
+ 	var minutes = currentDate.getMinutes();
+ 	var seconds = currentDate.getSeconds();
+
+ 	return hours +":"+ minutes +":"+ seconds;
 }
