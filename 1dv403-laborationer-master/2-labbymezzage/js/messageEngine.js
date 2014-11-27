@@ -9,17 +9,15 @@ var MessageBoard  = {
 		var submit = document.getElementById("button");
 		var textarea = document.getElementById("textarea");
 
-		
+		textarea.addEventListener("keypress", function(e){
+			if(!e){ e = window.event; }
 
-			textarea.addEventListener("keypress", function(e){
-				if(!e){ e = window.event; }
-
-				if(e.keyCode == 13 && !e.shiftKey){
-					e.preventDefault();
-					MessageBoard.getMessages();
-				}
-			});
-			submit.onclick = MessageBoard.getMessages;
+			if(e.keyCode == 13 && !e.shiftKey){
+				e.preventDefault();
+				MessageBoard.getMessages();
+			}
+		});
+		submit.onclick = MessageBoard.getMessages;
 
 	},
 
@@ -40,24 +38,34 @@ var MessageBoard  = {
 	
 	renderMessage: function(messageID){
 
+		//Creates divs and gets ids
 		var post = document.createElement("div");
-		post.setAttribute("class", "post");
-
 		var div = document.getElementById("messageArea");
-
 		var postFunction = document.createElement("div");
-		postFunction.setAttribute("class", "postFunction");
-		//Delete image
 		var imgClose = document.createElement("img");
+		var aDelete = document.createElement("a");
+		var imgTime = document.createElement("img");
+		var aTime = document.createElement("a");
+		var pText = document.createElement("p");
+		var dateDiv = document.createElement("div");
+		var pDate = document.createElement("p");
+		
+		//Sett attribute
+		post.setAttribute("class", "post");
+		postFunction.setAttribute("class", "postFunction");
 		imgClose.setAttribute("src", "pics/delete.png");
 		imgClose.setAttribute("alt", "Red round button with a cross on it.");
-		var aDelete = document.createElement("a");
+		imgTime.setAttribute("src", "pics/time.png");
+		imgTime.setAttribute("alt", "a klock");
 		aDelete.setAttribute("href", "#");
+		aTime.setAttribute("href", "#");
+		dateDiv.setAttribute("class", "theTime");
+		
+		//Delete image
 		div.appendChild(post);
 		post.appendChild(postFunction);
 		postFunction.appendChild(aDelete);
 		aDelete.appendChild(imgClose);
-
 
 		aDelete.onclick = function(){
 			if( confirm("Vill du verkligen radera meddelandet?")){
@@ -67,11 +75,6 @@ var MessageBoard  = {
 		}
 		
 		//Time and date image
-		var imgTime = document.createElement("img");
-		imgTime.setAttribute("src", "pics/time.png");
-		imgTime.setAttribute("alt", "a klock");
-		var aTime = document.createElement("a");
-		aTime.setAttribute("href", "#");
 		postFunction.appendChild(aTime);
 		aTime.appendChild(imgTime);
 
@@ -79,19 +82,13 @@ var MessageBoard  = {
 			MessageBoard.showTime(messageID);
 		}
 
+		//Creates text and date message
+		pText.innerHTML = MessageBoard.messages[messageID].getHTMLText();
+		post.appendChild(pText);
 
-
-		var text2 = document.createElement("p");
-		text2.innerHTML = MessageBoard.messages[messageID].getHTMLText();
-		post.appendChild(text2);
-
-		var dateDiv = document.createElement("div");
-		dateDiv.setAttribute("class", "theTime");
-
-		var dateTag = document.createElement("p");
-		dateTag.innerHTML = MessageBoard.messages[messageID].getDateText();
+		pDate.innerHTML = MessageBoard.messages[messageID].getDateText();
 		post.appendChild(dateDiv);
-		dateDiv.appendChild(dateTag);
+		dateDiv.appendChild(pDate);
 
 
 		MessageBoard.updateScroll();

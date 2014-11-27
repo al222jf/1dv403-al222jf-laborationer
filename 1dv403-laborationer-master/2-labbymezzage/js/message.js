@@ -35,7 +35,7 @@ Message.prototype.toString = function(){
 }
 
 Message.prototype.getHTMLText = function() {
-	return this.getText().replace(/[\n\r] /g, "<br />");
+	return this.getText().replace(/[\n\r]/g, "<br />");
 }
 
 
@@ -47,7 +47,7 @@ Message.prototype.getDateText = function(){
  	var minutes = Message.addZero(currentDate.getMinutes());
  	var seconds = Message.addZero(currentDate.getSeconds());
 
- 	return (hours.length == 2 ? hours : "0"+hours) +":"+ minutes +":"+ seconds;
+ 	return hours +":"+ minutes +":"+ seconds;
 }
 
 Message.addZero = function(i){
@@ -56,7 +56,7 @@ Message.addZero = function(i){
 
 		i = "0" + i;
 	}
-	
+
 	return i;
 }
 
