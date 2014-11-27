@@ -51,15 +51,15 @@ var MessageBoard  = {
 		var imgClose = document.createElement("img");
 		imgClose.setAttribute("src", "pics/delete.png");
 		imgClose.setAttribute("alt", "Red round button with a cross on it.");
-		var a = document.createElement("a");
-		a.setAttribute("href", "#");
+		var aDelete = document.createElement("a");
+		aDelete.setAttribute("href", "#");
 		div.appendChild(post);
 		post.appendChild(postFunction);
-		postFunction.appendChild(a);
-		a.appendChild(imgClose);
+		postFunction.appendChild(aDelete);
+		aDelete.appendChild(imgClose);
 
 
-		imgClose.onclick = function(){
+		aDelete.onclick = function(){
 			if( confirm("Vill du verkligen radera meddelandet?")){
 				MessageBoard.removeMessage(messageID);
 			}
@@ -70,11 +70,16 @@ var MessageBoard  = {
 		var imgTime = document.createElement("img");
 		imgTime.setAttribute("src", "pics/time.png");
 		imgTime.setAttribute("alt", "a klock");
-		a.appendChild(imgTime);
+		var aTime = document.createElement("a");
+		aTime.setAttribute("href", "#");
+		postFunction.appendChild(aTime);
+		aTime.appendChild(imgTime);
 
-		imgTime.onclick = function(){
+		aTime.onclick = function(){
 			MessageBoard.showTime(messageID);
 		}
+
+
 
 		var text2 = document.createElement("p");
 		text2.innerHTML = MessageBoard.messages[messageID].getHTMLText();
@@ -103,7 +108,7 @@ var MessageBoard  = {
 	},
 
 	removeMessage: function(messageID){
-		
+
 		MessageBoard.messages.splice(messageID, 1);
 		MessageBoard.renderMessages();
 		MessageBoard.counter();
