@@ -19,27 +19,44 @@ body {
 }
 
 #messageWrapper {
-	
 
+}
+
+.postFunction {
+	float: right;
+	margin: 2px;
+}
+
+.postFunction img {
+	margin-right: 2px;
 }
 
 #messageArea {
 	height: 300px;
 	width: 458px;
+	background-color: rgba(0, 0, 0, .05);
+	border: 1px solid rgb(0, 0, 0);
 	overflow: auto;
 }
 
 .post {
 	width: 100%;
+	background-color: rgb(255, 255, 255);
+	border-bottom: 1px solid rgba(0, 0, 0, .05);
+	word-wrap: break-word;
 	overflow: auto;
 }
 
 .theTime {
+	clear: both;
 	float: right;
 }
 
 .theTime p {
-	margin: 0;}
+	margin: 0;
+	font-size: 14px;
+	color: rgba(0, 0, 0, .5);
+}
 
 #bottom {
 	overflow: auto;
