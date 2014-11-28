@@ -67,7 +67,8 @@ var MessageBoard  = {
 		postFunction.appendChild(aDelete);
 		aDelete.appendChild(imgClose);
 
-		aDelete.onclick = function(){
+		aDelete.onclick = function(e){
+			e.preventDefault();
 			if( confirm("Vill du verkligen radera meddelandet?")){
 				MessageBoard.removeMessage(messageID);
 			}
@@ -78,7 +79,8 @@ var MessageBoard  = {
 		postFunction.appendChild(aTime);
 		aTime.appendChild(imgTime);
 
-		aTime.onclick = function(){
+		aTime.onclick = function(e){
+			e.preventDefault();
 			MessageBoard.showTime(messageID);
 		}
 
@@ -133,3 +135,18 @@ var MessageBoard  = {
 
 window.onload = MessageBoard.init;
 
+/*
+
+var myApp = {
+	games : [],
+
+	init : function (){
+		games.push(new Memory());
+	}
+}
+
+window.onload = function(){
+	myApp.init();
+}
+
+*/
