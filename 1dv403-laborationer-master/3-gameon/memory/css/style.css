@@ -1,0 +1,11 @@
+#memoryGame {
+	width: 96px;
+	height: 96px;
+	margin: auto;
+}
+
+.tile {
+	float: left;
+	width: 24px;
+	height: 24px;
+}
