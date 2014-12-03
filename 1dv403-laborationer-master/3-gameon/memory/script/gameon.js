@@ -88,30 +88,31 @@ var GameOn = {
 				if(GameOn.array < 1){
 					child1 = aElement.firstChild;
 					img1 = child1.setAttribute("src", "pics/"+relValue+".png");
-					GameOn.array.push(relValue, child1);
+					GameOn.array.push(relValue);
 					//console.log("child1");
 				} else {
 					child2 = aElement.firstChild;
 					child2.setAttribute("src", "pics/"+relValue+".png");
+					GameOn.array.push(relValue);
 					//console.log("child2");
 				}
 
 				
 			}
-
+			console.log(GameOn.array);
 		if (GameOn.array.length === 2 && GameOn.array[0] === GameOn.array[1]){
 
 			GameOn.array.length = 0;
-			//console.log("reset on match");
+			console.log("reset on match");
 
 		} else if (GameOn.array.length === 2){
 
 			GameOn.array.length = 0;
 			//child1.setAttribute("src", "pics/0.png");
 			//child2.setAttribute("src", "pics/0.png");
-			//console.log("reset");
+			console.log("reset");
 		}
-		console.log(GameOn.array);
+		
 	},
 	
 
