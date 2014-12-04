@@ -2,17 +2,24 @@
 
 var GameOn = {
 	array: [],
+	countMove: 0,
+	countClick: 0,
+	countWon: 0,
+	halfRandom: [],
+	countElement : null,
 
 	init: function (){
 		var that = this;
+		var count = 0;
 
 		var rows = 4;
 		var cols = 4;
 		var memoryArr;
 
 		memoryArr = RandomGenerator.getPictureArray(rows, cols);
+		GameOn.halfRandom = memoryArr;
+
 		GameOn.setClass(memoryArr);
-		GameOn.whenClick();
 	},
 
 	setClass: function(memoryArr){
@@ -20,104 +27,102 @@ var GameOn = {
 		var getDivId;
 		var aTag;
 		var imgTag;
+		var countDiv;
+		var countP;
 		
-		
+		countDiv = document.getElementById("counter");
+		countP = document.createElement("p");
+		countP.innerHTML = "Antal drag: "+GameOn.countMove;
+		countDiv.appendChild(countP);
+		GameOn.countElement = countP;
+
 		for(var i = 0; i < memoryArr.length; i += 1){
 			
 			getDivId = document.getElementById("memoryGame");
 			picDiv = document.createElement("div");
 			aTag = document.createElement("a");
 			imgTag = document.createElement("img");
-
-
+			
 			picDiv.setAttribute("class", "tile");
 			aTag.setAttribute("href", "#");
 			aTag.setAttribute("rel", memoryArr[i]);
 			imgTag.setAttribute("src", "pics/0.png");
-
+			
 			getDivId.appendChild(picDiv);
 			picDiv.appendChild(aTag);
 			aTag.appendChild(imgTag);
-
+			aTag.addEventListener("click", GameOn.switchImage, false);
 		}
 	},
+	switchImage: function(e){
+		e.preventDefault();
+		var aElement = this;
 
-	whenClick: function(){
-		/*var divOnClick = document.getElementById("memoryGame");
-		
+		var rel;
+		var child;
 
-		divOnClick.onclick = function(e){
-			var aOnClick = document.getElementsByTagName("a");
-			console.log(this.getAttribute("rel"));
-		};*/
+		if(!aElement.hasAttribute("type")){
 
-		/*var divOnClick = document.getElementById("memoryGame");
+			GameOn.clickCount();
 
-		divOnClick.addEventListener("click", function(){
+			if(GameOn.array.length < 2) {
 
-			var rel = this.getAttribute("rel");
-			console.log(rel);
-		});*/
+				rel = aElement.getAttribute("rel");
+				aElement.setAttribute("type", "#");
+				child = aElement.firstChild;
+				child.setAttribute("src", "pics/"+rel+".png");
 
-		var aTags = document.getElementsByTagName("a");
+				GameOn.array.push(aElement);
+			} 
+		} 
 
-		for(var i = 0; i < aTags.length; i += 1){
-			aTags[i].addEventListener("click", getRel, false)
-		};
+		if(GameOn.array.length === 2) {
 
-		function getRel(e){
-			e.preventDefault();
+			GameOn.moveCount();
 
-			var relValue;
-			var aElement;
+			if(GameOn.array[0].getAttribute("rel")	=== GameOn.array[1].getAttribute("rel")){
 
-			relValue = this.getAttribute("rel");
-			aElement = this;
-			
-			GameOn.switchImage(relValue, aElement);
-		};
-	},
-	switchImage: function(relValue, aElement){
-		var child1;
-		var child2;
-		var img1;
-		
+				GameOn.array.length = 0;
+				GameOn.whenFinished();
 
-		if(GameOn.array.length < 2){
+			} else {
 
-				if(GameOn.array < 1){
-					child1 = aElement.firstChild;
-					img1 = child1.setAttribute("src", "pics/"+relValue+".png");
-					GameOn.array.push(relValue);
-					//console.log("child1");
-				} else {
-					child2 = aElement.firstChild;
-					child2.setAttribute("src", "pics/"+relValue+".png");
-					GameOn.array.push(relValue);
-					//console.log("child2");
-				}
+				setTimeout(function(){
 
-				
-			}
-			console.log(GameOn.array);
-		if (GameOn.array.length === 2 && GameOn.array[0] === GameOn.array[1]){
+					for(var i = 0; i < GameOn.array.length; i += 1){
 
-			GameOn.array.length = 0;
-			console.log("reset on match");
+						GameOn.array[i].firstChild.setAttribute("src", "pics/0.png");
+						GameOn.array[i].removeAttribute("type");
+					}
 
-		} else if (GameOn.array.length === 2){
-
-			GameOn.array.length = 0;
-			//child1.setAttribute("src", "pics/0.png");
-			//child2.setAttribute("src", "pics/0.png");
-			console.log("reset");
+					GameOn.array.length = 0;
+				},1000);
+			}	
 		}
-		
 	},
 	
 
-	counter: function(){
+	moveCount: function(){
 		//Ska räkna antal gjorda drag
+		GameOn.countMove+=1;
+		GameOn.countElement.innerHTML = "Antal drag: " + GameOn.countMove;
+	},
+
+	clickCount: function(){
+		GameOn.countClick+=1;
+		//console.log(GameOn.countClick);
+	},
+
+	whenFinished: function(){
+		GameOn.countWon+=1;
+
+		console.log(GameOn.halfRandom.length / 2);
+		console.log(GameOn.countWon);
+
+		if(GameOn.halfRandom.length / 2 === GameOn.countWon){
+
+			GameOn.countElement.innerHTML = "Det tog "+GameOn.countClick+" klick och "+GameOn.countMove+" drag för att klara spelet!";
+		}
 	},
 };
 
