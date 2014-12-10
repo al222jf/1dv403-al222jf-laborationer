@@ -84,7 +84,6 @@ var quizz ={
 								quizz.getQuestion();
 							}, 1000);
 						} else {
-							quizz.clearText();
 							quizz.theEnd();
 						}
 					} else {
