@@ -1,9 +1,9 @@
 "use strict";
 
-/*require.config({
+require.config({
 	paths: {
-		"Desktop": "lib/desktop"
+		"desktop": "lib/desktop"
 	}
 });
-*/
+
 require(["lib/modules/desktop"]);

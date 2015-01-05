@@ -1,0 +1,32 @@
+body, div {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100%;
+}
+
+#container {
+	overflow: auto;
+}
+
+#toolBar {
+	position: absolute;
+	width: 100%;
+	background: blue;
+	bottom: 0;
+
+}
+
+.icons {
+	height: 40px;
+}
+
+.imgViewer {
+	margin-top: 200px;
+	margin-left: 200px;
+	height: 300px;
+	width: 200px;
+	background: black;
+}
