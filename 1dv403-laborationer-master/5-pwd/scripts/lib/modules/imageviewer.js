@@ -1,4 +1,5 @@
 "use strict";
+console.log("utanför");
 define(function(){
 
 	var ImageViewer = function(){
@@ -9,5 +10,8 @@ define(function(){
 
 	document.body.appendChild(imgViewer);
 	}
+
+	
+
 	return ImageViewer;
 });

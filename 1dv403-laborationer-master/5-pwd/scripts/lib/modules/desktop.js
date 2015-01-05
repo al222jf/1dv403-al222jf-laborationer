@@ -21,8 +21,12 @@
 
 		//Imageviewer on click
 		imgViewerAtag.addEventListener("click", function(){
-			var ImageViewer = require("lib/modules/imageviewer");
-new ImageViewer();
+			
+			require(["lib/modules/imageviewer"]);
+
+			var ImageViewer = require(["lib/modules/imageviewer"]);
+			console.log(ImageViewer);
+			new ImageViewer(); 
 		});
 
 
