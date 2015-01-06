@@ -1,33 +1,75 @@
 "use strict";
 
-		//Body background image
-		document.body.style.backgroundImage="url('http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/pics/1050509.jpg')";
+define(function(){
 		
-		//Toolbar div
-		var toolBar = document.createElement("div");
-		toolBar.setAttribute("id", "toolBar");
-		document.body.appendChild(toolBar);
 
-		//Imageviewer 
-		var imgViewerAtag = document.createElement("a");
-		var imgViewerImgTag = document.createElement("img");
+	var desktop = {
 
-		imgViewerAtag.setAttribute("href", "#");
-		imgViewerImgTag.setAttribute("src", "pics/imgview.png");
-		imgViewerImgTag.setAttribute("class", "icons");
+		init: function() {
+			desktop.createToolBar();
+		},
 
-		toolBar.appendChild(imgViewerAtag);
-		imgViewerAtag.appendChild(imgViewerImgTag);
-
-		//Imageviewer on click
-		imgViewerAtag.addEventListener("click", function(){
+		createToolBar: function(){
+			//Body background image
+			document.body.style.backgroundImage="url('http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/pics/1050509.jpg')";
 			
-			require(["lib/modules/imageviewer"]);
+			//Toolbar div
+			var toolBar = document.createElement("div");
+			toolBar.setAttribute("id", "toolBar");
+			document.body.appendChild(toolBar);
 
-			var ImageViewer = require(["lib/modules/imageviewer"]);
-			console.log(ImageViewer);
-			new ImageViewer(); 
-		});
+			//Imageviewer 
+			var imgViewerAtag = document.createElement("a");
+			var imgViewerImgTag = document.createElement("img");
+
+			imgViewerAtag.setAttribute("href", "#");
+			imgViewerImgTag.setAttribute("src", "pics/imgview.png");
+			imgViewerImgTag.setAttribute("class", "icons");
+			imgViewerImgTag.setAttribute("id", "imgViewer");
+
+			toolBar.appendChild(imgViewerAtag);
+			imgViewerAtag.appendChild(imgViewerImgTag);
+
+
+
+
+			desktop.toolBarEvent(toolBar);
+
+		},
+
+		toolBarEvent: function(toolBar){
+
+			//Imageviewer on click
+			toolBar.addEventListener("click", function(e){
+				console.log(e.target.id);
+
+				switch(e.target.id){
+					case "imgViewer":
+
+						var ImageViewer = require(["lib/modules/imageviewer"], function(imageviewer){
+							imageviewer();
+						});
+						new ImageViewer(); 
+
+						
+						break;
+
+
+				}
+				
+
+				//var ImageViewer = require(["lib/modules/imageviewer"]);
+				//new ImageViewer(); 
+			});
+		}
+	}
+
+	return desktop;
+});
+
+		
+
+		
 
 
 

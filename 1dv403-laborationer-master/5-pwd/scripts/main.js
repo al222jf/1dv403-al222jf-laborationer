@@ -2,8 +2,9 @@
 
 require.config({
 	paths: {
-		"desktop": "lib/desktop"
 	}
 });
 
-require(["lib/modules/desktop"]);
+require(["lib/modules/desktop"], function(desktop){
+	desktop.init();
+});
