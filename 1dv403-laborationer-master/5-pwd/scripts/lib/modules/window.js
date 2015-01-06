@@ -2,10 +2,10 @@
 
 define(function(){
 
-	var Window = function(settings, appID){
+	var Window = function(){
 		console.log("window");
 
-		this.createWindow();
+		//this.createWindow();
 		
 	};
 
@@ -13,10 +13,7 @@ define(function(){
 	Window.prototype.createWindow = function(){
 		console.log("createWindow");
 
-		var imgViewer = document.createElement("div");
-		imgViewer.setAttribute("class", "imgViewer");
-
-		document.body.appendChild(imgViewer);
+		
 		
 
 	}
