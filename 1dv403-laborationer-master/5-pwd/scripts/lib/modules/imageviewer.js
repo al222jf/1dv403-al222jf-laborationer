@@ -3,10 +3,8 @@ define(["lib/modules/window"], function(window){
 
 	
 	var imageviewer = function(){
-
-		console.log("imageviewer");
-	
 		createViewer();
+		getImg();
 
 	}
 
@@ -34,6 +32,31 @@ define(["lib/modules/window"], function(window){
 		bottomBar.setAttribute("class", "bottomBar");
 
 		imgWindow.appendChild(bottomBar);
+
+
+	}
+
+	function getImg(){
+		var url = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/";
+		var response;
+
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4){
+				if(xhr.status == 200){
+					response = JSON.parse(xhr.responseText);
+					loadImg(response);
+				}
+			} else {
+				console.log("Läsfel, status:"+xhr.status);
+			}
+		}
+
+		xhr.open("GET", url , true);
+		xhr.send(null);
+	}
+
+	function loadImg(response){
 
 	}
 

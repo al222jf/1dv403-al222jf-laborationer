@@ -30,7 +30,6 @@ body {
 	height: 300px;
 	width: 200px;
 	border: 1px solid black;
-	background: grey;
 }
 
 .topBar {
@@ -40,11 +39,12 @@ body {
 }
 
 .main {
-	background: red;
+	background: white;
+	height: 255px;
+
 }
 
 .bottomBar {
-	bottom: 0;
 	height: 15px;
-	background: green;
+	background: grey;
 }
