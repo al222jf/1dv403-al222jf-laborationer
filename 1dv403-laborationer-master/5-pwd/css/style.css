@@ -24,11 +24,8 @@ body {
 }
 
 .imgWindow {
-	position: absolute;
-	margin-top: 200px;
-	margin-left: 200px;
-	height: 300px;
-	width: 200px;
+	height: 500px;
+	width: 400px;
 	border: 1px solid black;
 }
 
@@ -40,10 +37,29 @@ body {
 
 .main {
 	background: white;
-	height: 255px;
+	height: 455px;
+	overflow: auto;
 
 }
 
+.imgDiv {
+	float: left;
+	text-align: center;
+	margin: 10px;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.imgDiv:before {    /* create a full-height inline block pseudo=element */
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;  /* vertical alignment of the inline element */
+    height: 100%;
+}
+
+.img {
+	display: inline-block;
+	vertical-align: middle;
+}
 .bottomBar {
 	height: 15px;
 	background: grey;

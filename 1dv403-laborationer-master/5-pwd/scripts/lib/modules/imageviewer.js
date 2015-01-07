@@ -24,6 +24,7 @@ define(["lib/modules/window"], function(window){
 		//Create main
 		var main = document.createElement("div");
 		main.setAttribute("class", "main");
+		main.setAttribute("id", "main");
 
 		imgWindow.appendChild(main);
 
@@ -57,7 +58,52 @@ define(["lib/modules/window"], function(window){
 	}
 
 	function loadImg(response){
+		console.log(response);
 
+		var main = document.getElementById("main");
+		var thumbHeight = 0;
+		var thumbWidth = 0;
+
+		for(var i = 0; i < response.length; i+=1){
+
+
+			var imgDiv = document.createElement("div");
+			var aTag = document.createElement("a");
+			var img = document.createElement("img");
+
+			imgDiv.setAttribute("class", "imgDiv");
+			aTag.setAttribute("href", "#");
+			aTag.setAttribute("class", "aTag");
+			img.setAttribute("src", response[i].thumbURL);
+			img.setAttribute("class", "img");
+
+			main.appendChild(imgDiv);
+			imgDiv.appendChild(aTag);
+			aTag.appendChild(img);
+
+			//console.log(img);
+
+			if(thumbHeight < response[i].thumbHeight){
+				thumbHeight = response[i].thumbHeight;
+			}
+
+			if(thumbWidth < response[i].thumbWidth){
+				thumbWidth =response[i].thumbWidth;
+			}
+
+
+			//Set biggest height and width
+			imgDiv.style.height = thumbWidth+"px";
+			imgDiv.style.width = thumbWidth+"px";
+
+			aTag.addEventListener("click", function(){
+    			console.log(this);
+			});
+			
+		}
+
+		
+		
 	}
 
 
