@@ -76,14 +76,12 @@ define(["lib/modules/window"], function(window){
 		}
 
 		this.loadImg = function(response){
-
-			console.log(this.Id);
 			var Window = document.getElementById(this.Id);
 			var that = this;
 			var main = Window.querySelector(".main");
 			var closeWindow = Window.querySelector(".closeA");
-			var topBar = Window.querySelector(".topBar");
 			//var main = document.getElementById("main");
+
 			var thumbHeight = 0;
 			var thumbWidth = 0;
 
@@ -122,34 +120,56 @@ define(["lib/modules/window"], function(window){
 					var a = this
 	    			that.changeBackground(a);
 				});
-				
 			}
+
 			closeWindow.addEventListener("click", function(){
 				that.closeWin(that.Id);
 			})
 
-			topBar.addEventListener("click", function(e){
-				console.log(e.target.Class);
-				console.log(this.CLass);
-				
-			})
-
+			that.moveWindow();
 		}
 
 		this.changeBackground = function(a){
 
 			var thumbnailURL = a.firstChild.src;
-			var backgroundURL = thumbnailURL.replace('/thumbs', '');
-			console.log(backgroundURL);
-			document.body.style.backgroundImage="url('"+backgroundURL+"')";
+			thumbnailURL = thumbnailURL.replace('/thumbs', '');
+			document.body.style.backgroundImage="url('"+thumbnailURL+"')";
 			
 		}
 
 		this.closeWin = function(ID){
 			
-			var lol = document.getElementById(ID);
-			document.body.removeChild(lol);
+			var mainWindow = document.getElementById(ID);
+			document.body.removeChild(mainWindow);
 		}
+
+		this.moveWindow = function(){
+			var offX;
+			var offY;
+			var Window = document.getElementById(this.Id);
+			var topBar = Window.querySelector(".topBar");
+
+			topBar.addEventListener('mousedown', mouseDown, false);
+    		document.body.addEventListener('mouseup', mouseUp, false);
+				
+			function mouseUp(){
+			    document.body.removeEventListener('mousemove', divMove, true);
+			}
+
+			function mouseDown(e){
+				offY= e.clientY-parseInt(Window.offsetTop);
+				offX= e.clientX-parseInt(Window.offsetLeft);
+				document.body.addEventListener('mousemove', divMove, true);
+			}
+
+
+			function divMove(e){
+			  Window.style.position = 'absolute';
+			  Window.style.top = (e.clientY-offY) + 'px';
+			  Window.style.left = (e.clientX-offX) + 'px';
+			}
+		}
+
 	this.createViewer();
 	this.getImg();
 	}

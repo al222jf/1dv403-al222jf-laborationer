@@ -41,8 +41,6 @@ define(["lib/modules/imageviewer"], function(ImageViewer){
 
 			//Imageviewer on click
 			toolBar.addEventListener("click", function(e){
-				console.log(e.target.id);
-
 				switch(e.target.id){
 					case "imgViewer":
 
