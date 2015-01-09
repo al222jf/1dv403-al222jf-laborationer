@@ -1,6 +1,6 @@
 "use strict";
 
-define(function(){
+define(["lib/modules/imageviewer"], function(ImageViewer){
 		
 
 	var desktop = {
@@ -46,15 +46,11 @@ define(function(){
 				switch(e.target.id){
 					case "imgViewer":
 
-						var ImageViewer = require(["lib/modules/imageviewer"], function(imageviewer){
-							imageviewer();
-						});
+						/*var ImageViewer = require(["lib/modules/imageviewer"], function(ImageViewer){
+							ImageViewer();
+						});*/
 						new ImageViewer(); 
-
-						
 						break;
-
-
 				}
 				
 

@@ -14,9 +14,8 @@ body {
 #toolBar {
 	position: absolute;
 	width: 100%;
-	background: blue;
+	background: rgba(0, 0, 0, .8);
 	bottom: 0;
-
 }
 
 .icons {
@@ -24,6 +23,7 @@ body {
 }
 
 .imgWindow {
+	float: left;
 	height: 500px;
 	width: 400px;
 	border: 1px solid black;
@@ -35,11 +35,34 @@ body {
 	background: grey;
 }
 
+.close{
+	width: 30px;
+	height: 100%;
+	float: right;
+}
+
 .main {
 	background: white;
 	height: 455px;
 	overflow: auto;
 
+}
+
+.loadingDiv {
+	text-align: center;
+	height: 100%;
+}
+
+.loadingDiv:before {    /* create a full-height inline block pseudo=element */
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;  /* vertical alignment of the inline element */
+    height: 100%;
+}
+
+.loadingDiv img {
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .imgDiv {
