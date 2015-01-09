@@ -21,6 +21,21 @@ define(["lib/modules/window"], function(window){
 
 			imgWindow.appendChild(topBar);
 
+			//Create topbar image
+			var topImg = document.createElement("img");
+			topImg.setAttribute("class", "topImg");
+			topImg.setAttribute("src", "pics/imgview.png")
+
+			topBar.appendChild(topImg);
+
+			//Create topbar text
+			var topTitle = document.createElement("p");
+			topTitle.setAttribute("class", "topTitle");
+
+			topBar.appendChild(topTitle);
+
+			topTitle.innerHTML = "ImageViewer";
+
 			//Create main
 			var main = document.createElement("div");
 			main.setAttribute("class", "main");
@@ -154,9 +169,12 @@ define(["lib/modules/window"], function(window){
 				
 			function mouseUp(){
 			    document.body.removeEventListener('mousemove', divMove, true);
+			    topBar.style.cursor="default";
 			}
 
 			function mouseDown(e){
+
+				topBar.style.cursor="move";
 				offY= e.clientY-parseInt(Window.offsetTop);
 				offX= e.clientX-parseInt(Window.offsetLeft);
 				document.body.addEventListener('mousemove', divMove, true);

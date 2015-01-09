@@ -35,10 +35,28 @@ body {
 	background: grey;
 }
 
+.topImg {
+	padding: 5px;
+	height: 20px;
+
+}
+
+.topTitle {
+	position: absolute;
+	top: 8px;
+	left: 40px;
+	margin: 0;
+	font-size: 14px;
+	color: rgb(255, 255, 255);
+}
+
+
+
 .close{
 	width: 30px;
 	height: 100%;
 	float: right;
+	background: black;
 }
 
 .main {
