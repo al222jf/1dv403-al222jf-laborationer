@@ -76,9 +76,13 @@ define(["lib/modules/window"], function(window){
 		}
 
 		this.loadImg = function(response){
+
+			console.log(this.Id);
+			var Window = document.getElementById(this.Id);
 			var that = this;
-			var main = imgWindow.querySelector(".main");
-			var closeWindow = imgWindow.querySelector(".closeA");
+			var main = Window.querySelector(".main");
+			var closeWindow = Window.querySelector(".closeA");
+			var topBar = Window.querySelector(".topBar");
 			//var main = document.getElementById("main");
 			var thumbHeight = 0;
 			var thumbWidth = 0;
@@ -122,6 +126,12 @@ define(["lib/modules/window"], function(window){
 			}
 			closeWindow.addEventListener("click", function(){
 				that.closeWin(that.Id);
+			})
+
+			topBar.addEventListener("click", function(e){
+				console.log(e.target.Class);
+				console.log(this.CLass);
+				
 			})
 
 		}
