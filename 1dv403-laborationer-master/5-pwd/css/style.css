@@ -33,6 +33,16 @@ body, div {
 	border: 1px solid black;
 }
 
+/*Fått hälp av alex*/
+.imgWindowNoSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .topBar {
 	width: 100%;
 	height: 30px;
@@ -75,10 +85,11 @@ body, div {
 	height: 100%;
 }
 
-.loadingDiv:before {    /* create a full-height inline block pseudo=element */
+/*Taget från internet, har dock tappat url*/
+.loadingDiv:before {
     content: ' ';
     display: inline-block;
-    vertical-align: middle;  /* vertical alignment of the inline element */
+    vertical-align: middle;
     height: 100%;
 }
 
@@ -94,10 +105,10 @@ body, div {
 	background-color: rgba(0, 0, 0, 0.2);
 }
 
-.imgDiv:before {    /* create a full-height inline block pseudo=element */
+.imgDiv:before {
     content: ' ';
     display: inline-block;
-    vertical-align: middle;  /* vertical alignment of the inline element */
+    vertical-align: middle;
     height: 100%;
 }
 

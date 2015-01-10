@@ -131,13 +131,15 @@ define(["lib/modules/window"], function(window){
 				imgDiv.style.height = thumbHeight+"px";
 				imgDiv.style.width = thumbWidth+"px";
 
-				aTag.addEventListener("click", function(){
+				aTag.addEventListener("click", function(e){
+					e.preventDefault();
 					var a = this
 	    			that.changeBackground(a);
 				});
 			}
 
-			closeWindow.addEventListener("click", function(){
+			closeWindow.addEventListener("click", function(e){
+				e.preventDefault();
 				that.closeWin(that.Id);
 			})
 
@@ -148,7 +150,7 @@ define(["lib/modules/window"], function(window){
 
 			var thumbnailURL = a.firstChild.src;
 			thumbnailURL = thumbnailURL.replace('/thumbs', '');
-			document.body.style.backgroundImage="url('"+thumbnailURL+"')";
+			document.getElementById("desktop").style.backgroundImage="url('"+thumbnailURL+"')";
 			
 		}
 
@@ -164,8 +166,15 @@ define(["lib/modules/window"], function(window){
 			var Window = document.getElementById(this.Id);
 			var topBar = Window.querySelector(".topBar");
 
+			Window.addEventListener("mousedown", focus, false);
 			topBar.addEventListener('mousedown', mouseDown, false);
     		document.body.addEventListener('mouseup', mouseUp, false);
+
+			function focus(){
+				var desktop = document.getElementById("desktop");
+				desktop.removeChild(Window);
+				desktop.appendChild(Window);
+			}
 				
 			function mouseUp(){
 			    document.body.removeEventListener('mousemove', divMove, true);
@@ -174,6 +183,7 @@ define(["lib/modules/window"], function(window){
 
 			function mouseDown(e){
 
+				document.getElementById("desktop").setAttribute("class", "imgWindowNoSelect");
 				topBar.style.cursor="move";
 				offY= e.clientY-parseInt(Window.offsetTop);
 				offX= e.clientX-parseInt(Window.offsetLeft);
