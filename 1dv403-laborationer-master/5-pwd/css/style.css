@@ -3,8 +3,12 @@ body, div {
 	padding: 0;
 }
 
-body {
-	height: 100%;
+#desktop {
+	position: relative;
+	height: 720px;
+	width: 1240px;
+	margin: auto;
+	background: blue;
 }
 
 #container {
@@ -23,7 +27,7 @@ body {
 }
 
 .imgWindow {
-	float: left;
+	position: absolute;
 	height: 500px;
 	width: 400px;
 	border: 1px solid black;

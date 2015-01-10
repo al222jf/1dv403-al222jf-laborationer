@@ -10,13 +10,22 @@ define(["lib/modules/imageviewer"], function(ImageViewer){
 		},
 
 		createToolBar: function(){
-			//Body background image
-			document.body.style.backgroundImage="url('http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/pics/1050509.jpg')";
+			//background image
+			
+
+			//Create desktop
+
+			var desktopDiv = document.createElement("div");
+			desktopDiv.setAttribute("id", "desktop");
+
+			document.body.appendChild(desktopDiv);
+
+			desktopDiv.style.backgroundImage="url('http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/pics/1050509.jpg')";
 			
 			//Toolbar div
 			var toolBar = document.createElement("div");
 			toolBar.setAttribute("id", "toolBar");
-			document.body.appendChild(toolBar);
+			desktopDiv.appendChild(toolBar);
 
 			//Imageviewer 
 			var imgViewerAtag = document.createElement("a");

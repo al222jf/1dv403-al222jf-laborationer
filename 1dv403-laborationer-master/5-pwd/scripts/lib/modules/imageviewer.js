@@ -13,7 +13,7 @@ define(["lib/modules/window"], function(window){
 
 			imgWindow.setAttribute("id", this.Id);
 
-			document.body.appendChild(imgWindow);
+			document.getElementById("desktop").appendChild(imgWindow);
 
 			//Create topbar
 			var topBar = document.createElement("div");
@@ -155,7 +155,7 @@ define(["lib/modules/window"], function(window){
 		this.closeWin = function(ID){
 			
 			var mainWindow = document.getElementById(ID);
-			document.body.removeChild(mainWindow);
+			document.getElementById("desktop").removeChild(mainWindow);
 		}
 
 		this.moveWindow = function(){
