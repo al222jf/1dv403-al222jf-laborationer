@@ -5,6 +5,8 @@ define(["lib/modules/window"], function(window){
 	var ImageViewer = function(){
 		
 		this.Id = Math.floor((Math.random() * 1000) + 1);
+		var thumbnailURL; 
+
 
 		this.createViewer = function(){
 			//Create window
@@ -57,20 +59,28 @@ define(["lib/modules/window"], function(window){
 			closeA.setAttribute("class", "closeA");
 			closeA.setAttribute("href", "#");
 
+			var closeImg = document.createElement("img");
+			closeImg.setAttribute("class", "closeImg");
+			closeImg.setAttribute("src", "pics/close.png");
+
 			topBar.appendChild(closeA);
 			closeA.appendChild(close);
+			close.appendChild(closeImg);
 		}
 
 		this.getImg = function(){
 			var url = "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/";
 			var that = this;
 
-
+			//Create loadin icon
 			var main = imgWindow.querySelector(".main");
+			
 			var loadingDiv = document.createElement("div");
 			loadingDiv.setAttribute("class", "loadingDiv");
+			
 			var loadingIcon = document.createElement("img");
 			loadingIcon.src = "pics/load.gif";
+			
 			main.appendChild(loadingDiv);
 			loadingDiv.appendChild(loadingIcon);
 
@@ -94,8 +104,6 @@ define(["lib/modules/window"], function(window){
 			var Window = document.getElementById(this.Id);
 			var that = this;
 			var main = Window.querySelector(".main");
-			var closeWindow = Window.querySelector(".closeA");
-			//var main = document.getElementById("main");
 
 			var thumbHeight = 0;
 			var thumbWidth = 0;
@@ -137,43 +145,42 @@ define(["lib/modules/window"], function(window){
 	    			that.changeBackground(a);
 				});
 			}
-
-			closeWindow.addEventListener("click", function(e){
-				e.preventDefault();
-				that.closeWin(that.Id);
-			})
-
-			that.moveWindow();
-		}
-
-		this.changeBackground = function(a){
-
-			var thumbnailURL = a.firstChild.src;
-			thumbnailURL = thumbnailURL.replace('/thumbs', '');
-			document.getElementById("desktop").style.backgroundImage="url('"+thumbnailURL+"')";
 			
+			that.windowEvent(Window);
 		}
 
-		this.closeWin = function(ID){
-			
-			var mainWindow = document.getElementById(ID);
-			document.getElementById("desktop").removeChild(mainWindow);
+		this.changeBackground = function(e){
+			//If you press the same thumbnail twice the original background appears
+			if(e.firstChild.src == this.thumbnailURL){
+				this.thumbnailURL = "pics/background.jpg";
+				
+			}else{
+				this.thumbnailURL = e.firstChild.src;
+			}
+
+			document.getElementById("desktop").style.backgroundImage="url('"+this.thumbnailURL.replace('/thumbs', '')+"')";
 		}
 
-		this.moveWindow = function(){
-			var offX;
-			var offY;
-			var Window = document.getElementById(this.Id);
-			var topBar = Window.querySelector(".topBar");
-
-			Window.addEventListener("mousedown", focus, false);
+		this.windowEvent = function(windowID){
+			var x, 
+				y, 
+				topBar = windowID.querySelector(".topBar"), 
+				toolbar = document.getElementById("toolBar"), 
+				closeWindow = windowID.querySelector(".closeA"), 
+				desktop = document.getElementById("desktop"),
+				maxTop = desktop.clientHeight - (windowID.offsetHeight + toolbar.offsetHeight),
+				maxLeft = desktop.clientWidth - windowID.offsetWidth;
+	
+			closeWindow.addEventListener("click", closeWin, false);
+			windowID.addEventListener("click", focus, false);
 			topBar.addEventListener('mousedown', mouseDown, false);
     		document.body.addEventListener('mouseup', mouseUp, false);
 
-			function focus(){
-				var desktop = document.getElementById("desktop");
-				desktop.removeChild(Window);
-				desktop.appendChild(Window);
+			function focus(e){
+				if(!e.target.parentElement.parentElement.className == closeWindow.className){
+					desktop.removeChild(windowID);
+					desktop.appendChild(windowID);
+				}
 			}
 				
 			function mouseUp(){
@@ -182,19 +189,23 @@ define(["lib/modules/window"], function(window){
 			}
 
 			function mouseDown(e){
+				x = e.clientX - parseInt(windowID.offsetLeft);
+        		y = e.clientY - parseInt(windowID.offsetTop);
 
-				document.getElementById("desktop").setAttribute("class", "imgWindowNoSelect");
 				topBar.style.cursor="move";
-				offY= e.clientY-parseInt(Window.offsetTop);
-				offX= e.clientX-parseInt(Window.offsetLeft);
+				y= e.clientY-parseInt(windowID.offsetTop);
+				x= e.clientX-parseInt(windowID.offsetLeft);
 				document.body.addEventListener('mousemove', divMove, true);
 			}
 
 
 			function divMove(e){
-			  Window.style.position = 'absolute';
-			  Window.style.top = (e.clientY-offY) + 'px';
-			  Window.style.left = (e.clientX-offX) + 'px';
+            	windowID.style.top = Math.max(Math.min((e.clientY - y), maxTop), 0) + "px";
+                windowID.style.left = Math.max(Math.min((e.clientX - x), maxLeft), 0) + "px";   
+			}
+
+			function closeWin(){
+				desktop.removeChild(windowID);
 			}
 		}
 

@@ -10,17 +10,12 @@ define(["lib/modules/imageviewer"], function(ImageViewer){
 		},
 
 		createToolBar: function(){
-			//background image
-			
-
 			//Create desktop
 
 			var desktopDiv = document.createElement("div");
 			desktopDiv.setAttribute("id", "desktop");
 
 			document.body.appendChild(desktopDiv);
-
-			desktopDiv.style.backgroundImage="url('http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/pics/1050509.jpg')";
 			
 			//Toolbar div
 			var toolBar = document.createElement("div");
@@ -39,9 +34,6 @@ define(["lib/modules/imageviewer"], function(ImageViewer){
 			toolBar.appendChild(imgViewerAtag);
 			imgViewerAtag.appendChild(imgViewerImgTag);
 
-
-
-
 			desktop.toolBarEvent(toolBar);
 
 		},
@@ -53,17 +45,9 @@ define(["lib/modules/imageviewer"], function(ImageViewer){
 				e.preventDefault();
 				switch(e.target.id){
 					case "imgViewer":
-
-						/*var ImageViewer = require(["lib/modules/imageviewer"], function(ImageViewer){
-							ImageViewer();
-						});*/
 						new ImageViewer(); 
 						break;
-				}
-				
-
-				//var ImageViewer = require(["lib/modules/imageviewer"]);
-				//new ImageViewer(); 
+				} 
 			});
 		}
 	}

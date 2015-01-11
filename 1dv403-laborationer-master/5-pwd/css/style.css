@@ -1,41 +1,19 @@
-body, div {
+html, body, div {
 	margin: 0;
 	padding: 0;
+	width: 100%;
+	height: 100%;
 }
 
 #desktop {
+	background-image: url("../pics/background.jpg");
 	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
 	height: 720px;
-	width: 1240px;
+	width: 1280px;
 	margin: auto;
-	background: blue;
-}
-
-#container {
-	overflow: auto;
-}
-
-#toolBar {
-	position: absolute;
-	width: 100%;
-	background: rgba(0, 0, 0, .8);
-	bottom: 0;
-}
-
-.icons {
-	height: 40px;
-}
-
-.imgWindow {
-	position: absolute;
-	height: 500px;
-	width: 400px;
-	border: 1px solid black;
-}
-
-/*Fått hälp av alex*/
-.imgWindowNoSelect {
-    -webkit-touch-callout: none;
+	-webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -43,10 +21,37 @@ body, div {
     user-select: none;
 }
 
+#toolBar {
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	background: rgba(0, 0, 0, .7);
+	bottom: 0;
+}
+
+.icons {
+	height: 40px;
+	padding: 5px;
+	transition: all .4s;
+	transform-origin: bottom left;
+}
+
+.icons:hover {
+	transform: scale(1.5, 1.5);
+}
+
+/* Imageviewer */
+.imgWindow {
+	position: absolute;
+	height: 500px;
+	width: 400px;
+	border: 1px solid black;
+}
+
 .topBar {
 	width: 100%;
 	height: 30px;
-	background: grey;
+	background: rgba(0, 0, 0, .7);
 }
 
 .topImg {
@@ -64,17 +69,18 @@ body, div {
 	color: rgb(255, 255, 255);
 }
 
-
-
 .close{
 	width: 30px;
 	height: 100%;
 	float: right;
-	background: black;
+}
+
+.closeImg {
+	height: 100%
 }
 
 .main {
-	background: white;
+	background: rgba(255, 255, 255, 1);
 	height: 455px;
 	overflow: auto;
 
@@ -103,6 +109,7 @@ body, div {
 	text-align: center;
 	margin: 10px;
 	background-color: rgba(0, 0, 0, 0.2);
+	border: 1px solid rgba(0, 0, 0, .2);
 }
 
 .imgDiv:before {
@@ -118,5 +125,5 @@ body, div {
 }
 .bottomBar {
 	height: 15px;
-	background: grey;
+	background: rgba(0, 0, 0, .7);
 }
