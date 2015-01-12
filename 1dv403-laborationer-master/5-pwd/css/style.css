@@ -76,7 +76,8 @@ html, body, div {
 }
 
 .closeImg {
-	height: 100%
+	height: 20px;
+	padding: 5px;
 }
 
 .main {

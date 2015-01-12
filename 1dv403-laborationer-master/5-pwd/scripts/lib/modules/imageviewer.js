@@ -1,5 +1,5 @@
 "use strict";
-define(["lib/modules/window"], function(window){
+define(function(){
 	var imgWindow = null; 
 	
 	var ImageViewer = function(){
@@ -120,9 +120,9 @@ define(["lib/modules/window"], function(window){
 				img.setAttribute("src", response[i].thumbURL);
 				img.setAttribute("class", "img");
 
-				main.appendChild(imgDiv);
-				imgDiv.appendChild(aTag);
-				aTag.appendChild(img);
+				main.appendChild(aTag);
+				aTag.appendChild(imgDiv);
+				imgDiv.appendChild(img);
 
 				//console.log(img);
 
@@ -151,11 +151,11 @@ define(["lib/modules/window"], function(window){
 
 		this.changeBackground = function(e){
 			//If you press the same thumbnail twice the original background appears
-			if(e.firstChild.src == this.thumbnailURL){
+			if(e.firstChild.firstChild.src == this.thumbnailURL){
 				this.thumbnailURL = "pics/background.jpg";
 				
 			}else{
-				this.thumbnailURL = e.firstChild.src;
+				this.thumbnailURL = e.firstChild.firstChild.src;
 			}
 
 			document.getElementById("desktop").style.backgroundImage="url('"+this.thumbnailURL.replace('/thumbs', '')+"')";
@@ -177,10 +177,8 @@ define(["lib/modules/window"], function(window){
     		document.body.addEventListener('mouseup', mouseUp, false);
 
 			function focus(e){
-				if(!e.target.parentElement.parentElement.className == closeWindow.className){
 					desktop.removeChild(windowID);
 					desktop.appendChild(windowID);
-				}
 			}
 				
 			function mouseUp(){
@@ -189,9 +187,6 @@ define(["lib/modules/window"], function(window){
 			}
 
 			function mouseDown(e){
-				x = e.clientX - parseInt(windowID.offsetLeft);
-        		y = e.clientY - parseInt(windowID.offsetTop);
-
 				topBar.style.cursor="move";
 				y= e.clientY-parseInt(windowID.offsetTop);
 				x= e.clientX-parseInt(windowID.offsetLeft);
@@ -206,6 +201,7 @@ define(["lib/modules/window"], function(window){
 
 			function closeWin(){
 				desktop.removeChild(windowID);
+				windowID.removeEventListener("click", focus, false);
 			}
 		}
 
