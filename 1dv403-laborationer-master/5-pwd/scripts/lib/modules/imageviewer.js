@@ -107,6 +107,17 @@ define(function(){
 
 			var thumbHeight = 0;
 			var thumbWidth = 0;
+			for (var i = 0; i < response.length; i+=1) {
+				
+
+				if(thumbHeight < response[i].thumbHeight){
+					thumbHeight = response[i].thumbHeight;
+				}
+
+				if(thumbWidth < response[i].thumbWidth){
+					thumbWidth =response[i].thumbWidth;
+				}
+			};
 
 			for(var i = 0; i < response.length; i+=1){
 
@@ -124,17 +135,6 @@ define(function(){
 				aTag.appendChild(imgDiv);
 				imgDiv.appendChild(img);
 
-				//console.log(img);
-
-				if(thumbHeight < response[i].thumbHeight){
-					thumbHeight = response[i].thumbHeight;
-				}
-
-				if(thumbWidth < response[i].thumbWidth){
-					thumbWidth =response[i].thumbWidth;
-				}
-
-
 				//Set biggest height and width
 				imgDiv.style.height = thumbHeight+"px";
 				imgDiv.style.width = thumbWidth+"px";
@@ -144,6 +144,9 @@ define(function(){
 					var a = this
 	    			that.changeBackground(a);
 				});
+
+
+				
 			}
 			
 			that.windowEvent(Window);
